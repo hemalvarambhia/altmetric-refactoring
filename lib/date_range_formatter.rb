@@ -14,13 +14,13 @@ class DateRangeFormatter
     full_end_date = in_full(@end_date)
     format = "%s at %s"
     if same_date?
-      return "#{formatted(full_start_date, @start_time)} to #{@end_time}" if @start_time && @end_time
-      return "#{formatted(full_start_date, @start_time)}" if @start_time
+      return "#{formatted(@start_date, @start_time)} to #{@end_time}" if @start_time && @end_time
+      return "#{formatted(@start_date, @start_time)}" if @start_time
       return "#{full_start_date} until #{@end_time}" if @end_time
       return full_start_date if @start_time.nil? && @end_time.nil?
     else
-      return "#{formatted(full_start_date, @start_time)} - #{full_end_date} at #{@end_time}" if @start_time && @end_time
-      return "#{formatted(full_start_date, @start_time)} - #{full_end_date}" if @start_time
+      return "#{formatted(@start_date, @start_time)} - #{full_end_date} at #{@end_time}" if @start_time && @end_time
+      return "#{formatted(@start_date, @start_time)} - #{full_end_date}" if @start_time
       return "#{full_start_date} - #{full_end_date} at #{@end_time}" if @end_time
       if same_year?
         return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y") if same_month?
@@ -35,7 +35,12 @@ class DateRangeFormatter
 
   def formatted(date, time)
     format = "%s at %s"
-    sprintf(format, date, time)
+    if date.is_a?(String)
+      sprintf(format, date, time)
+    else
+      sprintf(format, in_full(date), time)
+    end
+
   end
 
   def in_full(date)
