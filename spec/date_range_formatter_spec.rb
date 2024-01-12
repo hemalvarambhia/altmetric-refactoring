@@ -14,6 +14,11 @@ RSpec.describe(DateRangeFormatter) do
     expect { DateRangeFormatter.new(482934823984, 99869586956543434) }.to raise_error(TypeError)
   end
 
+  it 'formats a date range even when the start date is after the end date' do
+    formatter = DateRangeFormatter.new("2010-11-1", "2009-11-1")
+    expect(formatter.to_s).to eq("1st November 2010 - 1st November 2009")
+  end
+
   context 'when dates are the same' do
     it "formats a date range for the same day" do
       formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1")
