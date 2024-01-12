@@ -29,6 +29,17 @@ RSpec.describe(DateRangeFormatter) do
     expect { DateRangeFormatter.new("2021-03-22", nil, "13:00", "11:00") }.to raise_error
   end
 
+  {
+    'YYYY/mm/dd' => "2009/10/2",
+    'YY-mm-dd' => "09/10/2",
+    'YYYY.mm.dd' => '2009.10.2'
+  }.each do |format, date|
+    it "does not format a date range for the same day when the date has format is #{format} e.g. #{date}" do
+      formatter = DateRangeFormatter.new(date, date, "11:00", "12:00")
+      expect(formatter.to_s).to eq("2nd October 2009 at 11:00 to 12:00")
+    end
+  end
+
   context 'when dates are the same' do
     it "formats a date range for the same day" do
       formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1")
@@ -48,17 +59,6 @@ RSpec.describe(DateRangeFormatter) do
     it "formats a date range for the same day with only ending times" do
       formatter = DateRangeFormatter.new("2009-1-1", "2009-1-1", nil, "11:00")
       expect(formatter.to_s).to eq("1st January 2009 until 11:00")
-    end
-
-    {
-      'YYYY/mm/dd' => "2009/10/2",
-      'YY-mm-dd' => "09/10/2",
-      'YYYY.mm.dd' => '2009.10.2'
-    }.each do |format, date|
-      it "does not format a date range for the same day when the date has format is #{format} e.g. #{date}" do
-        formatter = DateRangeFormatter.new(date, date, "11:00", "12:00")
-        expect(formatter.to_s).to eq("2nd October 2009 at 11:00 to 12:00")
-      end
     end
   end
 
