@@ -15,13 +15,13 @@ class DateRangeFormatter
 
     if @start_time && @end_time
       return "#{full_start_date} at #{@start_time} to #{@end_time}" if same_date?
-      return "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
+      "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
     elsif @start_time
       return "#{full_start_date} at #{@start_time}" if same_date?
-      return "#{full_start_date} at #{@start_time} - #{full_end_date}"
+      "#{full_start_date} at #{@start_time} - #{full_end_date}"
     elsif @end_time
       return "#{full_start_date} until #{@end_time}" if same_date?
-      return "#{full_start_date} - #{full_end_date} at #{@end_time}"
+      "#{full_start_date} - #{full_end_date} at #{@end_time}"
     else
       return full_start_date if same_date?
       if @start_date.month == @end_date.month
