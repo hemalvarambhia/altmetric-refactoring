@@ -1,7 +1,10 @@
 require "date_range_formatter"
 
 RSpec.describe(DateRangeFormatter) do
-  it 'raises an error when clients provide a malformed date'
+  it 'raises an error when clients provide a malformed date' do
+    expect { DateRangeFormatter.new("2009-11q-1o", "2009-11-1") }.to raise_error(Date::Error)
+  end
+
   it 'raises an error when clients provide malformed times'
 
   context 'when dates are the same' do
