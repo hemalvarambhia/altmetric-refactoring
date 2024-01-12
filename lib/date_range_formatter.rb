@@ -14,7 +14,7 @@ class DateRangeFormatter
       return "#{formatted(@start_date, at: @start_time)} to #{@end_time}" if @start_time && @end_time
       return "#{formatted(@start_date, at: @start_time)}" if @start_time
       return "#{in_full(@start_date)} until #{@end_time}" if @end_time
-      return in_full(@start_date) if @start_time.nil? && @end_time.nil?
+      return in_full(@start_date)
     else
       return "#{formatted(@start_date, at: @start_time)} - #{formatted(@end_date, at: @end_time)}" if @start_time && @end_time
       return "#{formatted(@start_date, at: @start_time)} - #{in_full(@end_date)}" if @start_time
