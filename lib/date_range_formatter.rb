@@ -30,9 +30,9 @@ class DateRangeFormatter
 
   private
 
-  def formatted(date, time)
+  def formatted(date, time, at: time)
     format = "%s at %s"
-    sprintf(format, in_full(date), time)
+    sprintf(format, in_full(date), at)
   end
 
   def in_full(date)
