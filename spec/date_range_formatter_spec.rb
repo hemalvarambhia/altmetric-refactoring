@@ -45,6 +45,11 @@ RSpec.describe(DateRangeFormatter) do
       expect(formatter.to_s).to eq("1st November 2009 at 10:00 to 11:00")
     end
 
+    it "formats a date range for the same day with only ending times" do
+      formatter = DateRangeFormatter.new("2009-1-1", "2009-1-1", nil, "11:00")
+      expect(formatter.to_s).to eq("1st January 2009 until 11:00")
+    end
+
     {
       'YYYY/mm/dd' => "2009/10/2",
       'YY-mm-dd' => "09/10/2",
