@@ -1,6 +1,9 @@
 require "date_range_formatter"
 
 RSpec.describe(DateRangeFormatter) do
+  it 'raises an error when clients provide a malformed date'
+  it 'raises an error when clients provide malformed times'
+
   context 'when dates are the same' do
     it "formats a date range for the same day" do
       formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1")
