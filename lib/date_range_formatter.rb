@@ -10,8 +10,11 @@ class DateRangeFormatter
   end
 
   def to_s
-    full_start_date = @start_date.strftime("#{@start_date.day.ordinalize} %B %Y")
-    full_end_date = @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
+    full_start_date = in_full(@start_date)
+    full_end_date = in_full(@end_date)
+    if same_date?
+      return "#{full_start_date} at #{@start_time} to #{@end_time}" if @start_time && @end_time
+    end
 
     if @start_time && @end_time
       return "#{full_start_date} at #{@start_time} to #{@end_time}" if same_date?
@@ -26,7 +29,7 @@ class DateRangeFormatter
       return full_start_date if same_date?
       if same_year?
         return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y") if same_month?
-        return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
+        return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + in_full(@end_date)
       end
 
       "#{full_start_date} - #{full_end_date}"
@@ -34,6 +37,10 @@ class DateRangeFormatter
   end
 
   private
+
+  def in_full(date)
+    date.strftime("#{date.day.ordinalize} %B %Y")
+  end
 
   def same_month?
     @start_date.month == @end_date.month
