@@ -24,6 +24,11 @@ RSpec.describe(DateRangeFormatter) do
     expect(formatter.to_s).to eq("1st November 2009 at 13:00 to 11:00")
   end
 
+  it 'does not formats a date range dates are not provided' do
+    expect { DateRangeFormatter.new(nil, "2009-11-1", "13:00", "11:00") }.to raise_error
+    expect { DateRangeFormatter.new("2021-03-22", nil, "13:00", "11:00") }.to raise_error
+  end
+
   context 'when dates are the same' do
     it "formats a date range for the same day" do
       formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1")
