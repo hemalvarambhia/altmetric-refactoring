@@ -16,6 +16,7 @@ class DateRangeFormatter
       return "#{full_start_date} at #{@start_time} to #{@end_time}" if @start_time && @end_time
       return "#{full_start_date} at #{@start_time}" if @start_time
       return "#{full_start_date} until #{@end_time}" if @end_time
+      return full_start_date if @start_time.nil? && @end_time.nil?
     end
 
     if @start_time && @end_time
@@ -25,7 +26,6 @@ class DateRangeFormatter
     elsif @end_time
       "#{full_start_date} - #{full_end_date} at #{@end_time}"
     else
-      return full_start_date if same_date?
       if same_year?
         return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y") if same_month?
         return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + in_full(@end_date)
