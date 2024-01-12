@@ -17,9 +17,15 @@ RSpec.describe(DateRangeFormatter) do
       expect(formatter.to_s).to eq("1st November 2009 at 10:00 to 11:00")
     end
 
-    it 'does not format a date range for the same day when the date has format is YYYY/MM/dd' do
-      formatter = DateRangeFormatter.new("2009/10/2", "2009/10/2", "11:00", "12:00")
-      expect(formatter.to_s).to eq("2nd October 2009 at 11:00 to 12:00")
+    {
+      'YYYY/mm/dd' => "2009/10/2",
+      'YY-mm-dd' => "09/10/2",
+      'YYYY.mm.dd' => '2009.10.2'
+    }.each do |format, date|
+      it "does not format a date range for the same day when the date has format is #{format} e.g. #{date}" do
+        formatter = DateRangeFormatter.new(date, date, "11:00", "12:00")
+        expect(formatter.to_s).to eq("2nd October 2009 at 11:00 to 12:00")
+      end
     end
   end
 
