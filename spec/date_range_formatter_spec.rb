@@ -5,9 +5,15 @@ RSpec.describe(DateRangeFormatter) do
     expect { DateRangeFormatter.new("2009-11q-1o", "2009-11-1") }.to raise_error(Date::Error)
   end
 
-  it 'raises an error when clients provide malformed times' do
-    pending('To discuss with client of code')
-    expect { DateRangeFormatter.new("2009-11-1", "2024-11-1", "-01-00", "02-00") }.to raise_error
+  [
+    ['01-00', '02-00'],
+    ['25:30', '25:60'],
+    [0100, 0500]
+  ].each do |start_time, end_time|
+    it "raises an error when clients provide malformed times e.g. #{start_time} and #{end_time}" do
+      pending('To discuss with client of code')
+      expect { DateRangeFormatter.new("2009-11-1", "2024-11-1", start_time, end_time) }.to raise_error
+    end
   end
 
   it 'raises an error when clients do not provide dates as strings' do
