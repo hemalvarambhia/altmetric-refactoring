@@ -15,12 +15,11 @@ class DateRangeFormatter
 
     if @start_time && @end_time
       return "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}" if @start_date != @end_date
+      return "#{full_start_date} at #{@start_time} to #{@end_time}" if @start_date == @end_date
     end
 
     if @start_date == @end_date
-      if @start_time && @end_time
-        "#{full_start_date} at #{@start_time} to #{@end_time}"
-      elsif @start_time
+      if @start_time
         "#{full_start_date} at #{@start_time}"
       elsif @end_time
         "#{full_start_date} until #{@end_time}"
