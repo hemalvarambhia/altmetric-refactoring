@@ -24,17 +24,16 @@ class DateRangeFormatter
       return "#{full_start_date} - #{full_end_date} at #{@end_time}"
     else
       return full_start_date if same_date?
-    end
-
-    if @start_date.month == @end_date.month
-      if @start_date.year == @end_date.year
-        return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y")
+      if @start_date.month == @end_date.month
+        if @start_date.year == @end_date.year
+          return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y")
+        end
+      elsif @start_date.year == @end_date.year
+        return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
       end
-    elsif @start_date.year == @end_date.year
-      return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
-    end
 
-    "#{full_start_date} - #{full_end_date}"
+      "#{full_start_date} - #{full_end_date}"
+    end
   end
 
   private
