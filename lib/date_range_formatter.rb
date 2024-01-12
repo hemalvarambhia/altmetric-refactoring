@@ -10,23 +10,21 @@ class DateRangeFormatter
   end
 
   def to_s
-    full_start_date = in_full(@start_date)
-    full_end_date = in_full(@end_date)
     if same_date?
       return "#{formatted(@start_date, @start_time)} to #{@end_time}" if @start_time && @end_time
       return "#{formatted(@start_date, @start_time)}" if @start_time
-      return "#{full_start_date} until #{@end_time}" if @end_time
-      return full_start_date if @start_time.nil? && @end_time.nil?
+      return "#{in_full(@start_date)} until #{@end_time}" if @end_time
+      return in_full(@start_date) if @start_time.nil? && @end_time.nil?
     else
       return "#{formatted(@start_date, @start_time)} - #{formatted(@end_date, @end_time)}" if @start_time && @end_time
-      return "#{formatted(@start_date, @start_time)} - #{full_end_date}" if @start_time
-      return "#{full_start_date} - #{formatted(@end_date, @end_time)}" if @end_time
+      return "#{formatted(@start_date, @start_time)} - #{in_full(@end_date)}" if @start_time
+      return "#{in_full(@start_date)} - #{formatted(@end_date, @end_time)}" if @end_time
       if same_year?
         return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y") if same_month?
         return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + in_full(@end_date)
       end
 
-      "#{full_start_date} - #{full_end_date}"
+      "#{in_full(@start_date)} - #{in_full(@end_date)}"
     end
   end
 
