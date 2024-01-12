@@ -19,6 +19,11 @@ RSpec.describe(DateRangeFormatter) do
     expect(formatter.to_s).to eq("1st November 2010 - 1st November 2009")
   end
 
+  it 'formats a date range even when the start time is after the end time' do
+    formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1", "13:00", "11:00")
+    expect(formatter.to_s).to eq("1st November 2009 at 13:00 to 11:00")
+  end
+
   context 'when dates are the same' do
     it "formats a date range for the same day" do
       formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1")
