@@ -19,8 +19,8 @@ class DateRangeFormatter
       return "#{full_start_date} until #{@end_time}" if @end_time
       return full_start_date if @start_time.nil? && @end_time.nil?
     else
-      return "#{sprintf(format, full_start_date, @start_time)} - #{full_end_date} at #{@end_time}" if @start_time && @end_time
-      return "#{sprintf(format, full_start_date, @start_time)} - #{full_end_date}" if @start_time
+      return "#{formatted(full_start_date, @start_time)} - #{full_end_date} at #{@end_time}" if @start_time && @end_time
+      return "#{formatted(full_start_date, @start_time)} - #{full_end_date}" if @start_time
       return "#{full_start_date} - #{full_end_date} at #{@end_time}" if @end_time
       if same_year?
         return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y") if same_month?
