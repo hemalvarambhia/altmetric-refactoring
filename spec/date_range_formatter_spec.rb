@@ -10,6 +10,10 @@ RSpec.describe(DateRangeFormatter) do
     expect { DateRangeFormatter.new("2009-11-1", "2024-11-1", "-01-00", "02-00") }.to raise_error
   end
 
+  it 'raises an error when clients do not provide dates as strings' do
+    expect { DateRangeFormatter.new(482934823984, 99869586956543434) }.to raise_error(TypeError)
+  end
+
   context 'when dates are the same' do
     it "formats a date range for the same day" do
       formatter = DateRangeFormatter.new("2009-11-1", "2009-11-1")
