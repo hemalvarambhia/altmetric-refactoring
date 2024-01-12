@@ -1,5 +1,5 @@
 require "date"
-require "fixnum"
+require "integer"
 
 class DateRangeFormatter
   def initialize(start_date, end_date, start_time = nil, end_time = nil)
