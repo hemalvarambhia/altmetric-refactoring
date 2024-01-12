@@ -35,12 +35,7 @@ class DateRangeFormatter
 
   def formatted(date, time)
     format = "%s at %s"
-    if date.is_a?(String)
-      sprintf(format, date, time)
-    else
-      sprintf(format, in_full(date), time)
-    end
-
+    sprintf(format, in_full(date), time)
   end
 
   def in_full(date)
