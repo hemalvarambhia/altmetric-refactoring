@@ -11,14 +11,14 @@ class DateRangeFormatter
 
   def to_s
     if same_date?
-      return "#{formatted(@start_date, @start_time)} to #{@end_time}" if @start_time && @end_time
-      return "#{formatted(@start_date, @start_time)}" if @start_time
+      return "#{formatted(@start_date, @start_time, at: @start_time)} to #{@end_time}" if @start_time && @end_time
+      return "#{formatted(@start_date, @start_time, at: @start_time)}" if @start_time
       return "#{in_full(@start_date)} until #{@end_time}" if @end_time
       return in_full(@start_date) if @start_time.nil? && @end_time.nil?
     else
-      return "#{formatted(@start_date, @start_time)} - #{formatted(@end_date, @end_time)}" if @start_time && @end_time
-      return "#{formatted(@start_date, @start_time)} - #{in_full(@end_date)}" if @start_time
-      return "#{in_full(@start_date)} - #{formatted(@end_date, @end_time)}" if @end_time
+      return "#{formatted(@start_date, @start_time, at: @start_time)} - #{formatted(@end_date, @end_time, at: @end_time)}" if @start_time && @end_time
+      return "#{formatted(@start_date, @start_time, at: @start_time)} - #{in_full(@end_date)}" if @start_time
+      return "#{in_full(@start_date)} - #{formatted(@end_date, @end_time, at: @end_time)}" if @end_time
       if same_year?
         return "#{@start_date.day.ordinalize}" + " - " + in_full(@end_date) if same_month?
         return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + in_full(@end_date)
