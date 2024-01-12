@@ -13,6 +13,10 @@ class DateRangeFormatter
     full_start_date = @start_date.strftime("#{@start_date.day.ordinalize} %B %Y")
     full_end_date = @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
 
+    if @start_time && @end_time
+      return "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}" if @start_date != @end_date
+    end
+
     if @start_date == @end_date
       if @start_time && @end_time
         "#{full_start_date} at #{@start_time} to #{@end_time}"
