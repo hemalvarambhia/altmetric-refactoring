@@ -12,7 +12,6 @@ class DateRangeFormatter
   def to_s
     full_start_date = in_full(@start_date)
     full_end_date = in_full(@end_date)
-    format = "%s at %s"
     if same_date?
       return "#{formatted(@start_date, @start_time)} to #{@end_time}" if @start_time && @end_time
       return "#{formatted(@start_date, @start_time)}" if @start_time
