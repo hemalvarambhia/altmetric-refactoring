@@ -25,11 +25,7 @@ class DateRangeFormatter
     end
 
     if @start_date == @end_date
-      if @end_time
-        return "#{full_start_date} until #{@end_time}"
-      else
-        return full_start_date
-      end
+     return full_start_date
     end
 
     if @start_date.month == @end_date.month
