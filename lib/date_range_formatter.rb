@@ -22,10 +22,8 @@ class DateRangeFormatter
     elsif @end_time
       return "#{full_start_date} - #{full_end_date} at #{@end_time}"
       return "#{full_start_date} until #{@end_time}" if @start_date == @end_date
-    end
-
-    if @start_date == @end_date
-     return full_start_date
+    else
+      return full_start_date if @start_date == @end_date
     end
 
     if @start_date.month == @end_date.month
