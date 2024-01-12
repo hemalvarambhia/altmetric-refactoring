@@ -14,16 +14,16 @@ class DateRangeFormatter
     full_end_date = @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
 
     if @start_time && @end_time
-      return "#{full_start_date} at #{@start_time} to #{@end_time}" if @start_date == @end_date
+      return "#{full_start_date} at #{@start_time} to #{@end_time}" if same_date?
       return "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
     elsif @start_time
-      return "#{full_start_date} at #{@start_time}" if @start_date == @end_date
+      return "#{full_start_date} at #{@start_time}" if same_date?
       return "#{full_start_date} at #{@start_time} - #{full_end_date}"
     elsif @end_time
-      return "#{full_start_date} until #{@end_time}" if @start_date == @end_date
+      return "#{full_start_date} until #{@end_time}" if same_date?
       return "#{full_start_date} - #{full_end_date} at #{@end_time}"
     else
-      return full_start_date if @start_date == @end_date
+      return full_start_date if same_date?
     end
 
     if @start_date.month == @end_date.month
@@ -37,6 +37,12 @@ class DateRangeFormatter
     else
       "#{full_start_date} - #{full_end_date}"
     end
+  end
+
+  private
+
+  def same_date?
+    @start_date == @end_date
   end
 end
 
