@@ -19,6 +19,8 @@ class DateRangeFormatter
     elsif @start_time
       return "#{full_start_date} at #{@start_time} - #{full_end_date}" if @start_date != @end_date
       return "#{full_start_date} at #{@start_time}" if @start_date == @end_date
+    elsif @end_time
+      return "#{full_start_date} - #{full_end_date} at #{@end_time}"
     end
 
     if @start_date == @end_date
