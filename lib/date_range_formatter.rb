@@ -20,7 +20,7 @@ class DateRangeFormatter
       return "#{formatted(@start_date, @start_time)} - #{in_full(@end_date)}" if @start_time
       return "#{in_full(@start_date)} - #{formatted(@end_date, @end_time)}" if @end_time
       if same_year?
-        return @start_date.strftime("#{@start_date.day.ordinalize} - #{@end_date.day.ordinalize} %B %Y") if same_month?
+        return @start_date.strftime("#{@start_date.day.ordinalize}") + " - " + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y") if same_month?
         return @start_date.strftime("#{@start_date.day.ordinalize} %B") + " - " + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
       end
 
