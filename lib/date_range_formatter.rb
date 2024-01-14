@@ -2,6 +2,8 @@ require "date"
 require "integer"
 
 class DateRangeFormatter
+  # Have the times been defaulted because the majority of clients don't provide
+  # them and thus the normal execution of the code is where times are nil?
   def initialize(start_date, end_date, start_time = nil, end_time = nil)
     @start_date = Date.parse(start_date)
     @start_time = start_time
