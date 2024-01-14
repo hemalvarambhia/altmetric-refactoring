@@ -20,8 +20,8 @@ class DateRangeFormatter
       return "#{formatted(@start_date, at: @start_time)} - #{in_full(@end_date)}" if @start_time
       return "#{in_full(@start_date)} - #{formatted(@end_date, at: @end_time)}" if @end_time
       if same_year?
-        return "#{ordinalised_day(@start_date)} - #{ordinalised_day(@end_date)} #{@end_date.strftime("%B %Y")}" if same_month?
-        return "#{date_and_month(@start_date)} - #{date_and_month(@end_date)} #{@end_date.strftime("%Y")}"
+        return "#{ordinalized_day(@start_date)} - #{ordinalized_day(@end_date)} #{@end_date.strftime("%B %Y")}" if same_month?
+        return "#{day_and_month(@start_date)} - #{day_and_month(@end_date)} #{@end_date.strftime("%Y")}"
       end
 
       "#{in_full(@start_date)} - #{in_full(@end_date)}"
@@ -30,8 +30,8 @@ class DateRangeFormatter
 
   private
 
-  def date_and_month(date)
-    date.strftime("#{ordinalised_day(date)} %B")
+  def day_and_month(date)
+    date.strftime("#{ordinalized_day(date)} %B")
   end
 
   def formatted(date, at:)
@@ -39,10 +39,10 @@ class DateRangeFormatter
   end
 
   def in_full(date)
-    date.strftime("#{ordinalised_day(date)} %B %Y")
+    date.strftime("#{ordinalized_day(date)} %B %Y")
   end
 
-  def ordinalised_day(date)
+  def ordinalized_day(date)
     date.day.ordinalize
   end
 
