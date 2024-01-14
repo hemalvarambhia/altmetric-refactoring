@@ -30,10 +30,6 @@ class DateRangeFormatter
 
   private
 
-  def ordinalised_day(date)
-    date.day.ordinalize
-  end
-
   def date_and_month(date)
     date.strftime("#{ordinalised_day(date)} %B")
   end
@@ -44,6 +40,10 @@ class DateRangeFormatter
 
   def in_full(date)
     date.strftime("#{ordinalised_day(date)} %B %Y")
+  end
+
+  def ordinalised_day(date)
+    date.day.ordinalize
   end
 
   def same_month?
