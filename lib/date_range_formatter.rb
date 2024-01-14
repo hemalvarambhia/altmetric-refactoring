@@ -42,6 +42,9 @@ class DateRangeFormatter
     date.strftime("#{ordinalized_day(date)} %B %Y")
   end
 
+  # SMELL: could these date based methods be patched into the
+  # ```Date``` class?
+
   def ordinalized_day(date)
     date.day.ordinalize
   end
