@@ -72,5 +72,10 @@ RSpec.describe(DateRangeFormatter) do
     expect(formatter.to_s).to eq("1st November 2009 - 1st December 2010")
   end
 
+  it "formats a start date after the end date" do
+    formatter = DateRangeFormatter.new("2009-12-1", "2009-11-1")
+    expect(formatter.to_s).to eq("1st December - 1st November 2009")
+  end
+
 end
 
