@@ -68,24 +68,26 @@ RSpec.describe(DateRangeFormatter) do
     end
   end
 
+  context 'when formatting the different year' do
+    it "formats a date range for different year" do
+      formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1")
+      expect(formatter.to_s).to eq("1st November 2009 - 1st December 2010")
+    end
+
+    it "formats a date range for different year with starting time" do
+      formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1", "10:00")
+      expect(formatter.to_s).to eq("1st November 2009 at 10:00 - 1st December 2010")
+    end
+
+    it "formats a date range for different year with starting and ending times" do
+      formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1", "10:00", "11:00")
+      expect(formatter.to_s).to eq("1st November 2009 at 10:00 - 1st December 2010 at 11:00")
+    end
+  end
+
   it "formats a start day after the end day" do
     formatter = DateRangeFormatter.new("2009-12-1", "2009-11-1")
     expect(formatter.to_s).to eq("1st December - 1st November 2009")
-  end
-
-  it "formats a date range for different year" do
-    formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1")
-    expect(formatter.to_s).to eq("1st November 2009 - 1st December 2010")
-  end
-
-  it "formats a date range for different year with starting time" do
-    formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1", "10:00")
-    expect(formatter.to_s).to eq("1st November 2009 at 10:00 - 1st December 2010")
-  end
-
-  it "formats a date range for different year with starting and ending times" do
-    formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1", "10:00", "11:00")
-    expect(formatter.to_s).to eq("1st November 2009 at 10:00 - 1st December 2010 at 11:00")
   end
 end
 
