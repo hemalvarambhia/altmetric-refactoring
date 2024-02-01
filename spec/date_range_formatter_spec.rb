@@ -87,6 +87,11 @@ RSpec.describe(DateRangeFormatter) do
       formatter = DateRangeFormatter.new("2009-11-1", "2010-12-1", "10:00", "11:00")
       expect(formatter.to_s).to eq("1st November 2009 at 10:00 - 1st December 2010 at 11:00")
     end
+
+    it "formats a date range where the dates are in words" do
+      formatter = DateRangeFormatter.new("1st Jan 2011", "2nd Feb 2013")
+      expect(formatter.to_s).to eq("1st January 2011 - 2nd February 2013")
+    end
   end
 
   it "formats a start day after the end day" do
