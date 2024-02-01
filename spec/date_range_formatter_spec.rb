@@ -89,9 +89,14 @@ RSpec.describe(DateRangeFormatter) do
     expect(formatter.to_s).to eq("1st December - 1st November 2009")
   end
 
-  it "passes different date format" do
-    formatter = DateRangeFormatter.new("1-12-2009", "1-11-2009")
-    expect(formatter.to_s).to eq("1st December - 1st November 2009")
+  it "passes DD-MM-YYYY date format" do
+    formatter = DateRangeFormatter.new("1-11-2009", "1-12-2009")
+    expect(formatter.to_s).to eq("1st November - 1st December 2009")
+  end
+
+  it "passes DD/MM/YYYY date format" do
+    formatter = DateRangeFormatter.new("1/11/2009", "1/12/2009")
+    expect(formatter.to_s).to eq("1st November - 1st December 2009")
   end
 end
 
