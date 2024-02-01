@@ -1,3 +1,4 @@
+require 'spec_helper'
 require "date_range_formatter"
 
 RSpec.describe(DateRangeFormatter) do
