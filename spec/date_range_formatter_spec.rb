@@ -119,5 +119,16 @@ RSpec.describe(DateRangeFormatter) do
     formatter = DateRangeFormatter.new("20220705", "20230705", "15h23m24s")
     expect(formatter.to_s).to eq("5th July 2022 at 15h23m24s - 5th July 2023")
   end
+
+  it "passes only end date timestamp" do
+    formatter = DateRangeFormatter.new("20220705", "20230705", nil, "15h23m24s")
+    expect(formatter.to_s).to eq("5th July 2022 - 5th July 2023 at 15h23m24s")
+  end
+
+  it "passes start date nil" do
+    expect do
+      DateRangeFormatter.new(nil, "20230705", nil, "15h23m24s")
+    end.to raise_error  TypeError, "no implicit conversion of nil into String"
+  end
 end
 
