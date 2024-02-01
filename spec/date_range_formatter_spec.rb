@@ -98,5 +98,16 @@ RSpec.describe(DateRangeFormatter) do
     formatter = DateRangeFormatter.new("1/11/2009", "1/12/2009")
     expect(formatter.to_s).to eq("1st November - 1st December 2009")
   end
+
+  it "passes incorrect date format" do
+    expect do
+      DateRangeFormatter.new("1-13-2009", "1-14-2009")
+    end.to raise_error Date::Error, "invalid date"
+  end
+
+  it "passes timestamp date format" do
+    formatter = DateRangeFormatter.new("20220705", "20230705", "15h23m24s")
+    expect(formatter.to_s).to eq("5th July 2022 at 15h23m24s - 5th July 2023")
+  end
 end
 
