@@ -60,8 +60,8 @@ class DateRangeFormatter
     end
   end
 
-  def full_start_end_date_format(full_start_date)
-    "#{full_start_date} at #{@start_time} to #{@end_time}"
+  def full_start_end_date_format(full_start_date, full_end_date)
+    "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
   end
 end
 
