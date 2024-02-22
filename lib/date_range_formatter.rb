@@ -25,7 +25,7 @@ class DateRangeFormatter
       end
     elsif @start_date.month == @end_date.month
       if @start_time && @end_time
-        "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
+        full_start_end_date_format(full_start_date, full_end_date)
       elsif @start_time
         "#{full_start_date} at #{@start_time} - #{full_end_date}"
       elsif @end_time
@@ -39,7 +39,7 @@ class DateRangeFormatter
       end
     elsif @start_date.year == @end_date.year
       if @start_time && @end_time
-        "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
+        full_start_end_date_format(full_start_date, full_end_date)
       elsif @start_time
         "#{full_start_date} at #{@start_time} - #{full_end_date}"
       elsif @end_time
