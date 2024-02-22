@@ -40,12 +40,8 @@ class DateRangeFormatter
         @start_date.strftime("#{@start_date.day.ordinalize} %B - ") + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
       end
     else
-      if @start_time && @end_time
-        full_start_end_date_format(full_start_date, full_end_date)
-      elsif @start_time
-        full_start_date_with_time_format(full_start_date, full_end_date)
-      elsif @end_time
-        full_end_date_with_time_format(full_start_date, full_end_date)
+      if @start_time || @end_time
+        append_time_to_date_format(full_start_date, full_end_date)
       else
         "#{full_start_date} - #{full_end_date}"
       end
