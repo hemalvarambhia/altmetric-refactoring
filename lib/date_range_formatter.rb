@@ -15,7 +15,7 @@ class DateRangeFormatter
 
     if @start_date == @end_date
       if @start_time && @end_time
-        full_start_end_date_format(full_start_date)
+        "#{full_start_date} at #{@start_time} to #{@end_time}"
       elsif @start_time
         "#{full_start_date} at #{@start_time}"
       elsif @end_time
