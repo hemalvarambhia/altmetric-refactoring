@@ -24,12 +24,8 @@ class DateRangeFormatter
         full_start_date
       end
     elsif @start_date.month == @end_date.month
-      if @start_time && @end_time
-        full_start_end_date_format(full_start_date, full_end_date)
-      elsif @start_time
-        full_start_date_with_time_format(full_start_date, full_end_date)
-      elsif @end_time
-        full_end_date_with_time_format(full_start_date, full_end_date)
+      if @start_time || @end_time
+        append_time_to_date_format(full_start_date, full_end_date)
       else
         if @start_date.year != @end_date.year
           "#{full_start_date} - #{full_end_date}"
@@ -70,6 +66,16 @@ class DateRangeFormatter
 
   def full_end_date_with_time_format(full_start_date, full_end_date)
     "#{full_start_date} - #{full_end_date} at #{@end_time}"
+  end
+
+  def append_time_to_date_format(full_start_date, full_end_date)
+    if @start_time && @end_time
+      full_start_end_date_format(full_start_date, full_end_date)
+    elsif @start_time
+      full_start_date_with_time_format(full_start_date, full_end_date)
+    elsif @end_time
+      full_end_date_with_time_format(full_start_date, full_end_date)
+    end
   end
 end
 
