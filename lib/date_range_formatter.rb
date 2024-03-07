@@ -48,25 +48,25 @@ class DateRangeFormatter
     end
   end
 
-  def full_start_end_date_format(full_start_date, full_end_date)
+  def date_range_in_full(full_start_date, full_end_date)
     "#{full_start_date} at #{@start_time} - #{full_end_date} at #{@end_time}"
   end
 
-  def full_start_date_with_time_format(full_start_date, full_end_date)
+  def date_range_with_start_time(full_start_date, full_end_date)
     "#{full_start_date} at #{@start_time} - #{full_end_date}"
   end
 
-  def full_end_date_with_time_format(full_start_date, full_end_date)
+  def date_range_with_end_time(full_start_date, full_end_date)
     "#{full_start_date} - #{full_end_date} at #{@end_time}"
   end
 
   def append_time_to_date_format(full_start_date, full_end_date)
     if @start_time && @end_time
-      full_start_end_date_format(full_start_date, full_end_date)
+      date_range_in_full(full_start_date, full_end_date)
     elsif @start_time
-      full_start_date_with_time_format(full_start_date, full_end_date)
+      date_range_with_start_time(full_start_date, full_end_date)
     elsif @end_time
-      full_end_date_with_time_format(full_start_date, full_end_date)
+      date_range_with_end_time(full_start_date, full_end_date)
     end
   end
 end
