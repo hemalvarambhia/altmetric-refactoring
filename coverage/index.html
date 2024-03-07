@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-03-07T13:46:20+00:00">2024-03-07T13:46:20+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-03-07T13:51:46+00:00">2024-03-07T13:51:46+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -461,7 +461,7 @@
 
             
 
-            <code class="ruby">        if @start_date.year != @end_date.year</code>
+            <code class="ruby">        if @start_date.year == @end_date.year</code>
           </li>
         </div>
       
@@ -472,7 +472,7 @@
 
             
 
-            <code class="ruby">          &quot;#{full_start_date} - #{full_end_date}&quot;</code>
+            <code class="ruby">          @start_date.strftime(&quot;#{@start_date.day.ordinalize} - &quot;) + @end_date.strftime(&quot;#{@end_date.day.ordinalize} %B %Y&quot;)</code>
           </li>
         </div>
       
@@ -494,7 +494,7 @@
 
             
 
-            <code class="ruby">          @start_date.strftime(&quot;#{@start_date.day.ordinalize} - &quot;) + @end_date.strftime(&quot;#{@end_date.day.ordinalize} %B %Y&quot;)</code>
+            <code class="ruby">          &quot;#{full_start_date} - #{full_end_date}&quot;</code>
           </li>
         </div>
       

@@ -27,10 +27,10 @@ class DateRangeFormatter
       if @start_time || @end_time
         append_time_to_date_format(full_start_date, full_end_date)
       else
-        if @start_date.year != @end_date.year
-          "#{full_start_date} - #{full_end_date}"
-        else
+        if @start_date.year == @end_date.year
           @start_date.strftime("#{@start_date.day.ordinalize} - ") + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
+        else
+          "#{full_start_date} - #{full_end_date}"
         end
       end
     elsif @start_date.year == @end_date.year
