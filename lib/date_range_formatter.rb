@@ -23,15 +23,17 @@ class DateRangeFormatter
       else
         full_start_date
       end
+    elsif @start_date.month == @end_date.month && @start_date.year == @end_date.year
+      if start_or_end_time_exists?
+        append_time_to_date_format(full_start_date, full_end_date)
+      else
+        @start_date.strftime("#{@start_date.day.ordinalize} - ") + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
+      end
     elsif @start_date.month == @end_date.month
       if start_or_end_time_exists?
         append_time_to_date_format(full_start_date, full_end_date)
       else
-        if @start_date.year == @end_date.year
-          @start_date.strftime("#{@start_date.day.ordinalize} - ") + @end_date.strftime("#{@end_date.day.ordinalize} %B %Y")
-        else
-          "#{full_start_date} - #{full_end_date}"
-        end
+        "#{full_start_date} - #{full_end_date}"
       end
     elsif @start_date.year == @end_date.year
       if start_or_end_time_exists?
